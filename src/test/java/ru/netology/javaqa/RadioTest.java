@@ -6,95 +6,165 @@ import org.junit.jupiter.api.Test;
 public class RadioTest {
 
     @Test
-    public void nextFrom0To1 () {
+    public void permissible0To1Station() {
         Radio radio = new Radio();
+
         radio.setCurrentStation(0);
-        radio.next();
 
-        int actual = radio.getCurrentStation();
-        int expected = 1;
-        Assertions.assertEquals(expected,actual);
+        Assertions.assertEquals(0, radio.getCurrentStation());
     }
 
     @Test
-    public void nextFrom9To0 () {
+    public void permissibleMin0To1Station() {
         Radio radio = new Radio();
-        radio.setCurrentStation(9);
-        radio.next();
 
-        int actual = radio.getCurrentStation();
-        int expected = 0;
-        Assertions.assertEquals(expected,actual);
-    }
-
-    @Test
-    public void prevFrom1To0 () {
-        Radio radio = new Radio();
-        radio.setCurrentStation(1);
-        radio.prev();
-
-        int actual = radio.getCurrentStation();
-        int expected = 0;
-
-        Assertions.assertEquals(expected,actual);
-
-    }
-    @Test
-    public void prevFrom0To9 () {
-        Radio radio = new Radio();
-        radio.setCurrentStation(0);
-        radio.prev();
-
-        int actual = radio.getCurrentStation();
-        int expected = 9;
-
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void setCurrentStation_belowZero_ignored() {
-        Radio radio = new Radio();
         radio.setCurrentStation(-1);
 
         Assertions.assertEquals(0, radio.getCurrentStation());
     }
 
     @Test
-    public void setCurrentStation_aboveNine_ignored() {
+    public void permissibleMax0To1Station() {
         Radio radio = new Radio();
+
+        radio.setCurrentStation(1);
+
+        Assertions.assertEquals(1, radio.getCurrentStation());
+    }
+
+    @Test
+    public void permissible0To9Station() {
+        Radio radio = new Radio();
+
+        radio.setCurrentStation(9);
+
+        Assertions.assertEquals(9, radio.getCurrentStation());
+    }
+
+    @Test
+    public void permissibleMin0To9Station() {
+        Radio radio = new Radio();
+
+        radio.setCurrentStation(8);
+
+        Assertions.assertEquals(8, radio.getCurrentStation());
+    }
+
+
+    @Test
+    public void permissibleMax0To9Station() {
+        Radio radio = new Radio();
+
         radio.setCurrentStation(10);
+
         Assertions.assertEquals(0, radio.getCurrentStation());
     }
 
     @Test
-    public void VolumeMaxDoesNotChange() {
+    public void permissible0To1Volume() {
         Radio radio = new Radio();
-        for (int i = 0; i < 100; i++) {
-            radio.increaseVolume();
-        }
-        Assertions.assertEquals(100, radio.getCurrentVolume());
 
-        radio.increaseVolume();
+        radio.setCurrentVolume(0);
+
+        Assertions.assertEquals(0, radio.getCurrentVolume());
+    }
+
+    @Test
+    public void permissibleMin0To1Volume() {
+        Radio radio = new Radio();
+
+        radio.setCurrentVolume(-1);
+
+        Assertions.assertEquals(0, radio.getCurrentVolume());
+    }
+
+    @Test
+    public void permissibleMax0To1Volume() {
+        Radio radio = new Radio();
+
+        radio.setCurrentVolume(1);
+
+        Assertions.assertEquals(1, radio.getCurrentVolume());
+    }
+
+    @Test
+    public void permissible0To100Volume() {
+        Radio radio = new Radio();
+
+        radio.setCurrentVolume(100);
+
         Assertions.assertEquals(100, radio.getCurrentVolume());
     }
 
     @Test
-    public void VolumenormalCase() {
+    public void permissibleMin0To100Volume() {
         Radio radio = new Radio();
-        for (int i = 0; i < 50; i++) {
-            radio.increaseVolume();
-        }
-        radio.decreaseVolume();
-       Assertions.assertEquals(49, radio.getCurrentVolume());
+
+        radio.setCurrentVolume(99);
+
+        Assertions.assertEquals(99, radio.getCurrentVolume());
+    }
+
+
+    @Test
+    public void permissibleMax0To100Volume() {
+        Radio radio = new Radio();
+
+        radio.setCurrentVolume(101);
+
+        Assertions.assertEquals(0, radio.getCurrentVolume());
     }
 
     @Test
-    public void VolumeMinDoesNotChange() {
+    public void nextFrom0To1() {
         Radio radio = new Radio();
-        Assertions.assertEquals(0, radio.getCurrentVolume());
+        radio.setCurrentStation(0);
 
-        radio.decreaseVolume();
-        Assertions.assertEquals(0, radio.getCurrentVolume());
+        radio.next();
+
+        Assertions.assertEquals(1, radio.getCurrentStation());
     }
+
+    @Test
+    public void nextFrom9To0() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(9);
+
+        radio.next();
+
+        Assertions.assertEquals(0, radio.getCurrentStation());
+    }
+
+    @Test
+    public void prevFrom1To0() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(1);
+
+        radio.prev();
+
+        Assertions.assertEquals(0, radio.getCurrentStation());
+
+    }
+
+    @Test
+    public void prevFrom0To9() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(0);
+
+        radio.prev();
+
+        Assertions.assertEquals(9, radio.getCurrentStation());
+    }
+
+    @Test
+    public void test() {
+        Radio radio = new Radio(20);
+
+        radio.setCurrentStation(15);
+
+        Assertions.assertEquals(15, radio.getCurrentStation());
+
+    }
+
 }
 
