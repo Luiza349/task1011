@@ -9,6 +9,8 @@ public class Radio {
         this.currentVolume = 0;
     }
 
+
+
     // Переключить на следующую станцию (с зацикливанием 9→0)
     public void next() {
         if (currentStation == 9) {
