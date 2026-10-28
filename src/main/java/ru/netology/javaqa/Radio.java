@@ -7,12 +7,12 @@ public class Radio {
     private int maxVolume;
 
     public Radio() {
-        this.maxStation =9;
+        this.maxStation = 9;
         this.maxVolume = 100;
     }
 
-    public Radio(int stationsCount){
-        this.maxStation=stationsCount-1;
+    public Radio(int stationsCount) {
+        this.maxStation = stationsCount - 1;
 
     }
 
